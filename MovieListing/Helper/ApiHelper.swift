@@ -1,31 +1,20 @@
-//
-//  ApiHelper.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 08/07/25.
-//
-
 import Foundation
 
-// API Type
 enum ApiType {
     case listApi
     case detailsApi
 }
 
-// API Path
 enum ApiPath : String {
     case listApi  = "https://imdb236.p.rapidapi.com/api/imdb/top250-movies" // "http://localhost:3000/api/movies"
     case detailsApi =  "https://imdb236.p.rapidapi.com/api/imdb/"//"http://localhost:3000/api/movies/tt0068646"//
 }
 
-// API Error
 enum APIError: Error {
     case httpStatus(code: Int)
     case decodingFailed(error: Error)
 }
 
-//Local json Movie Id to test detail view
 let testMovieId = "tt0068646"
 let movieAPIKey = "e35b7bc239mshaa56e17894d8ae2p1cd5f1jsna5582bfd07a5"
 
@@ -34,7 +23,6 @@ enum LocalJsonFile : String {
     case details = "MovieDetail"
 }
 
-// Helper enum to load JSON
 enum JSONLoader {
     static func load<T: Decodable>(_ filename: String,type: T.Type = T.self,bundle: Bundle = .main) -> T {
         guard let url = bundle.url(forResource: filename, withExtension: "json") else {
@@ -51,8 +39,6 @@ enum JSONLoader {
     }
 }
 
-
-// Struct to create URLRequest
 struct ApiRequest {
     let path: String
     var headers = [
@@ -83,3 +69,17 @@ struct ApiRequest {
         }
 }
 
+enum ConstantsStrings : String {
+    case noInternetConnection = "No internet connection"
+    case retryConnection = "Retry"
+    case error = "Error"
+    case loading = "Loading..."
+    case directors = "Directors"
+    case cast = "Cast"
+    case runtime = "Run time"
+    case plotSummary = "Plot Summary"
+    case headerTitle = "Top 250 Movies"
+    case jailbreakDetected = "Jailbreak detected"
+    case jailbreakError = "This device appears to be jailbroken.\nFor security reasons, this app cannot run"
+    case exitApp = "Exit App"
+}

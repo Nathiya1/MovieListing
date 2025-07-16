@@ -1,10 +1,3 @@
-//
-//  MovieDetailView.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 08/04/25.
-//
-
 import SwiftUI
 import AVKit
 

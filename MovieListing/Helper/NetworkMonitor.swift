@@ -1,10 +1,3 @@
-//
-//  NetworkMonitor.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 10/07/25.
-//
-
 import Network
 import Foundation
 import Combine

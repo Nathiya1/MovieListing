@@ -39,6 +39,7 @@
 				DetailView/DetailView.swift,
 				DetailView/MovieDetailView.swift,
 				Helper/ApiHelper.swift,
+				Helper/JailbreakDetector.swift,
 				Helper/NetworkMonitor.swift,
 				ListView/MovieCardView.swift,
 				ListView/MovieListView.swift,
@@ -137,6 +138,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72F8A0EE2DA556B0005B13A4 /* Build configuration list for PBXNativeTarget "MovieListing" */;
 			buildPhases = (
+				7269A0C82E27751E00C6F87C /* Run SwiftLint */,
 				72F8A0C62DA556B0005B13A4 /* Sources */,
 				72F8A0C72DA556B0005B13A4 /* Frameworks */,
 				72F8A0C82DA556B0005B13A4 /* Resources */,
@@ -233,6 +235,9 @@
 			);
 			mainGroup = 72F8A0C12DA556B0005B13A4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7269A0C72E276C5B00C6F87C /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 72F8A0CB2DA556B0005B13A4 /* Products */;
 			projectDirPath = "";
@@ -268,6 +273,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7269A0C82E27751E00C6F87C /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed. Visit https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		72F8A0C62DA556B0005B13A4 /* Sources */ = {
@@ -590,6 +616,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7269A0C72E276C5B00C6F87C /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 72F8A0C22DA556B0005B13A4 /* Project object */;
 }

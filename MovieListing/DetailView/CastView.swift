@@ -1,10 +1,3 @@
-//
-//  CastView.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 09/07/25.
-//
-
 import SwiftUI
 struct CastCard: View {
    var cast: Cast

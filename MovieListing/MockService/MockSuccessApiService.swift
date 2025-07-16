@@ -1,10 +1,3 @@
-//
-//  MockSuccessApiService.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 10/07/25.
-//
-
 import Foundation
 
 class MockSuccessApiService: MovieServiceProtocol {

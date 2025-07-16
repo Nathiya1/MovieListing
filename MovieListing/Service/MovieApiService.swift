@@ -1,10 +1,3 @@
-//
-//  MovieApiService.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 08/04/25.
-//
-
 import Foundation
 
 protocol MovieServiceProtocol {
@@ -20,7 +13,6 @@ class MovieApiService : MovieServiceProtocol {
             self.session = session
     }
     
-    // Fetch list of top 250 movies
     func fetchMovies() async throws -> [Movie] {
         let request = ApiRequest(path: ApiPath.listApi.rawValue)
         
@@ -38,9 +30,8 @@ class MovieApiService : MovieServiceProtocol {
         return try JSONDecoder().decode([Movie].self, from: data)
     }
     
-    //Fetch movie detail with id
     func fetchMovieDetails(id: String) async throws -> Movie? {
-        let request = ApiRequest(path: ApiPath.detailsApi.rawValue + id)//+ id
+        let request = ApiRequest(path: ApiPath.detailsApi.rawValue + id)
         guard let urlRequest = request.asURLRequest() else {
             throw URLError(.badURL)
         }

@@ -1,14 +1,5 @@
-//
-//  MovieViewModel.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 08/04/25.
-//
-
 import Foundation
-import AVKit
 
-@MainActor
 class MovieViewModel : ObservableObject {
     
     @Published var movies : [Movie] = []
@@ -21,8 +12,7 @@ class MovieViewModel : ObservableObject {
         self.apiService = apiService
     }
     
-    // API Call
-    
+    @MainActor
     func fetchMovie() async {
         isLoading = true
          if NetworkMonitor.shared.isConnected {
@@ -37,7 +27,7 @@ class MovieViewModel : ObservableObject {
         }
         else {
             isLoading = false
-            errorMessage = "No internet connection"
+            errorMessage = ConstantsStrings.noInternetConnection.rawValue
         }
     }
 }

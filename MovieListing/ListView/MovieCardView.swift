@@ -1,23 +1,15 @@
-//
-//  MovieCardView.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 05/07/25.
-//
-
 import SwiftUI
 
 struct MovieCardView: View {
     @State var movie: Movie?
     var body: some View {
         HStack(spacing: 16) {
-            // Movie Poster
+            
             AsyncImage(url: URL(string: movie?.thumbnails?.first?.url ?? ""))
                 .scaledToFill()
                 .frame(width: 60, height: 90)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
-            // Movie Details
             VStack(alignment: .leading, spacing: 8) {
                 Text(movie?.primaryTitle ?? "")
                     .font(.headline)
@@ -43,7 +35,7 @@ struct MovieCardView: View {
         .background(Color(.systemGray6).opacity(0.1))
         .cornerRadius(16)
         .padding(.horizontal)
-        .background(Color.black) // This makes the background match the screenshot theme
+        .background(Color.black) 
     }
 }
 #Preview {

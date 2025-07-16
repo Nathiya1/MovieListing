@@ -1,10 +1,3 @@
-//
-//  MovieListView.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 10/07/25.
-//
-
 import SwiftUI
 
 struct MovieListView: View {
@@ -19,10 +12,10 @@ struct MovieListView: View {
                 NavigationLink(destination: MovieDetailView(id: movie.id)) {
                     MovieCardView(movie: movie)
                 }
-                .listRowBackground(Color.black) // Row background
+                .listRowBackground(Color.black)
             }
-            .scrollContentBackground(.hidden) // Hide List's default bg
-            .background(Color.black) // List bg
+            .scrollContentBackground(.hidden)
+            .background(Color.black) 
         }
     }
 }

@@ -1,10 +1,3 @@
-//
-//  DetailView.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 10/07/25.
-//
-
 import SwiftUI
 import Combine
 
@@ -14,7 +7,6 @@ struct DetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 
-                // Banner Image
                 AsyncImage(url: viewModel.movieThumbnailURL) { image in
                     image
                         .resizable()
@@ -28,7 +20,6 @@ struct DetailView: View {
                     .frame(height: 200)
                 }
 
-                // Movie Info
                 HStack(alignment: .top, spacing: 16) {
                     AsyncImage(url: viewModel.movieImageUrl) { image in
                         image
@@ -47,11 +38,11 @@ struct DetailView: View {
                             .font(.title2).bold()
                             .foregroundColor(.white)
 
-                        Text("Directors: \(viewModel.movieDirectors)")
+                        Text("\(ConstantsStrings.directors.rawValue): \(viewModel.movieDirectors)")
                             .font(.subheadline)
                             .foregroundColor(.gray)
 
-                        Text("Run Time: \(viewModel.movieDuration)")
+                        Text("\(ConstantsStrings.runtime.rawValue): \(viewModel.movieDuration)")
                             .font(.subheadline)
                             .foregroundColor(.gray)
 
@@ -70,9 +61,8 @@ struct DetailView: View {
                 }
                 .padding(.horizontal)
 
-                // Plot Summary
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Plot Summary")
+                    Text(ConstantsStrings.plotSummary.rawValue)
                         .font(.headline)
                         .foregroundColor(.white)
 
@@ -82,9 +72,8 @@ struct DetailView: View {
                 }
                 .padding(.horizontal)
 
-                // Cast
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Cast")
+                    Text(ConstantsStrings.cast.rawValue)
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding(.horizontal)

@@ -1,14 +1,5 @@
-//
-//  MovieDetailsViewModel.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 09/07/25.
-//
-
 import Foundation
 
-
-@MainActor
 class MovieDetailsViewModel : ObservableObject {
     
     @Published var movieDetail : Movie?
@@ -61,6 +52,7 @@ class MovieDetailsViewModel : ObservableObject {
         self.apiService = apiService
     }
     
+    @MainActor
     func fetchMovieDetail(imdbID : String) async {
         if NetworkMonitor.shared.isConnected {
             isLoading = true
@@ -69,12 +61,11 @@ class MovieDetailsViewModel : ObservableObject {
                 self.movieDetail = try await apiService.fetchMovieDetails(id: imdbID)
                 isLoading = false
             } catch {
-                print("Error")
                 errorMessage = error.localizedDescription
                 isLoading = false
             }
         } else {
-            errorMessage = "No internet connection"
+            errorMessage = ConstantsStrings.noInternetConnection.rawValue
             isLoading = false
         }
     }

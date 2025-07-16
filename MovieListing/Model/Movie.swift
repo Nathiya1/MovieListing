@@ -1,10 +1,3 @@
-//
-//  Movie.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 08/04/25.
-//
-
 import Foundation
 struct Movie: Codable, Identifiable {
     var id: String

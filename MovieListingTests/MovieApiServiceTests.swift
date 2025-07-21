@@ -1,16 +1,8 @@
-//
-//  MovieApiServiceTests.swift
-//  MovieListingTests
-//
-//  Created by NATHIYA on 10/07/25.
-//
-
 import XCTest
 
 final class MovieApiServiceTests: XCTestCase {
 
     func testFetchMovies_Success() async throws {
-            // Arrange
             let mockSession = MockURLSession()
             let expectedMovies: [Movie] = JSONLoader.load(LocalJsonFile.list.rawValue, type: [Movie].self, bundle: Bundle(for: Self.self))
             let jsonData = try JSONEncoder().encode(expectedMovies)
@@ -25,16 +17,13 @@ final class MovieApiServiceTests: XCTestCase {
 
             let service = MovieApiService(session: mockSession)
 
-            // Act
             let result = try await service.fetchMovies()
 
-            // Assert
             XCTAssertEqual(result.count, expectedMovies.count)
             XCTAssertEqual(result.first?.primaryTitle, "The Shawshank Redemption")
         }
 
         func testFetchMovieDetails_Success() async throws {
-            // Arrange
             let mockSession = MockURLSession()
             let expectedMovie: Movie = JSONLoader.load(LocalJsonFile.details.rawValue, type: Movie.self, bundle: Bundle(for: Self.self))
             let jsonData = try JSONEncoder().encode(expectedMovie)
@@ -49,16 +38,13 @@ final class MovieApiServiceTests: XCTestCase {
 
             let service = MovieApiService(session: mockSession)
 
-            // Act
             let result = try await service.fetchMovieDetails(id: "tt0816692")
 
-            // Assert
             XCTAssertNotNil(result)
             XCTAssertEqual(result?.primaryTitle, "Interstellar")
         }
 
         func testFetchMovies_Failure() async {
-            // Arrange
             let mockSession = MockURLSession()
             mockSession.mockData = nil
             mockSession.mockResponse = nil
@@ -74,7 +60,6 @@ final class MovieApiServiceTests: XCTestCase {
         }
     
     func testFetchMovieDetails_Failure() async {
-        // Arrange
         let mockSession = MockURLSession()
         mockSession.mockData = nil
         mockSession.mockResponse = nil
@@ -89,4 +74,45 @@ final class MovieApiServiceTests: XCTestCase {
         }
     }
 
+    func testFetchMovieDetails_with500Response_throwsBadServerResponse() async {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://example.com")!,
+            statusCode: 500,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        let mockSession = MockURLSession()
+        mockSession.mockResponse = response
+        mockSession.mockData = Data()
+
+        let service = MovieApiService(session: mockSession)
+
+        do {
+            _ = try await service.fetchMovieDetails(id: "abc123")
+            XCTFail("Expected failure")
+        } catch {
+            XCTAssertEqual((error as? URLError)?.code, .badServerResponse)
+        }
+    }
+    
+    func testFetchMovie_with500Response_throwsBadServerResponse() async {
+        let response = HTTPURLResponse(
+            url: URL(string: "https://example.com")!,
+            statusCode: 500,
+            httpVersion: nil,
+            headerFields: nil
+        )!
+        let mockSession = MockURLSession()
+        mockSession.mockResponse = response
+        mockSession.mockData = Data()
+
+        let service = MovieApiService(session: mockSession)
+
+        do {
+            _ = try await service.fetchMovies()
+            XCTFail("Expected failure")
+        } catch {
+            XCTAssertEqual((error as? URLError)?.code, .badServerResponse)
+        }
+    }
 }

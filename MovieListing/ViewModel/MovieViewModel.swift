@@ -1,17 +1,13 @@
 import Foundation
 
-class MovieViewModel : ObservableObject {
-    
-    @Published var movies : [Movie] = []
+class MovieViewModel: ObservableObject {
+    @Published var movies: [Movie] = []
     @Published var isLoading = false
-    @Published var errorMessage : String? = nil
-    
-    var apiService : MovieServiceProtocol
-    
-    init(apiService:MovieServiceProtocol) {
+    @Published var errorMessage: String?
+    var apiService: MovieServiceProtocol
+    init(apiService: MovieServiceProtocol) {
         self.apiService = apiService
     }
-    
     @MainActor
     func fetchMovie() async {
         isLoading = true
@@ -24,8 +20,7 @@ class MovieViewModel : ObservableObject {
                 isLoading = false
                 errorMessage = error.localizedDescription
             }
-        }
-        else {
+        } else {
             isLoading = false
             errorMessage = ConstantsStrings.noInternetConnection.rawValue
         }

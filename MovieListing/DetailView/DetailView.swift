@@ -6,7 +6,6 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                
                 AsyncImage(url: viewModel.movieThumbnailURL) { image in
                     image
                         .resizable()
@@ -66,7 +65,7 @@ struct DetailView: View {
                         .font(.headline)
                         .foregroundColor(.white)
 
-                    Text(viewModel.movieSumaury)
+                    Text(viewModel.movieSummary)
                         .foregroundColor(.gray)
                         .font(.body)
                 }
@@ -81,7 +80,7 @@ struct DetailView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(viewModel.movieCast, id: \.id) { cast in
-                                CastCard(cast: cast)
+                                CastView(cast: cast)
                             }
                         }
                         .padding(.horizontal)

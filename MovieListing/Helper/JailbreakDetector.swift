@@ -1,15 +1,7 @@
-//
-//  JailbreakDetector.swift
-//  MovieListing
-//
-//  Created by NATHIYA on 15/07/25.
-//
-
 import Foundation
 import UIKit
 
 public class JailbreakDetector {
-    
     static func isJailbroken() -> Bool {
     #if targetEnvironment(simulator)
             return false
@@ -24,11 +16,9 @@ public class JailbreakDetector {
                 "/usr/bin/ssh"
             ]
 
-            for path in paths {
-                if FileManager.default.fileExists(atPath: path) {
-                    return true
-                }
-            }
+        for path in paths where FileManager.default.fileExists(atPath: path) {
+            return true
+        }
 
             let testPath = "/private/" + UUID().uuidString
             do {
@@ -43,5 +33,5 @@ public class JailbreakDetector {
             return false
     #endif
         }
-   
+
 }

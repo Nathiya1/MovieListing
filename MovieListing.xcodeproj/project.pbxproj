@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		723C6EEC2E2DF525009C3F91 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723C6EEB2E2DF525009C3F91 /* XCTest.framework */; platformFilter = ios; };
+		723C6EEF2E2DF5D1009C3F91 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 723C6EEE2E2DF5D1009C3F91 /* ViewInspector */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		72F8A0DB2DA556B0005B13A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		723C6EEB2E2DF525009C3F91 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		72F8A0CA2DA556B0005B13A4 /* MovieListing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieListing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F8A0DA2DA556B0005B13A4 /* MovieListingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieListingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F8A0E42DA556B0005B13A4 /* MovieListingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieListingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +50,7 @@
 				ListView/MovieCardView.swift,
 				ListView/MovieListView.swift,
 				MockService/MockFailureApiService.swift,
+				MockService/MockMovieDetailViewModel.swift,
 				MockService/MockSuccessApiService.swift,
 				MockService/MockURLSession.swift,
 				Model/Movie.swift,
@@ -98,6 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				723C6EEC2E2DF525009C3F91 /* XCTest.framework in Frameworks */,
+				723C6EEF2E2DF5D1009C3F91 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,12 +120,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7269A1342E28AE1600C6F87C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				723C6EEB2E2DF525009C3F91 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		72F8A0C12DA556B0005B13A4 = {
 			isa = PBXGroup;
 			children = (
 				72F8A0CC2DA556B0005B13A4 /* MovieListing */,
 				72F8A0DD2DA556B0005B13A4 /* MovieListingTests */,
 				72F8A0E72DA556B0005B13A4 /* MovieListingUITests */,
+				7269A1342E28AE1600C6F87C /* Frameworks */,
 				72F8A0CB2DA556B0005B13A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -138,7 +156,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 72F8A0EE2DA556B0005B13A4 /* Build configuration list for PBXNativeTarget "MovieListing" */;
 			buildPhases = (
-				7269A0C82E27751E00C6F87C /* Run SwiftLint */,
 				72F8A0C62DA556B0005B13A4 /* Sources */,
 				72F8A0C72DA556B0005B13A4 /* Frameworks */,
 				72F8A0C82DA556B0005B13A4 /* Resources */,
@@ -146,6 +163,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				72D31A352E2E164100383AF8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				72F8A0CC2DA556B0005B13A4 /* MovieListing */,
@@ -175,6 +193,7 @@
 			);
 			name = MovieListingTests;
 			packageProductDependencies = (
+				723C6EEE2E2DF5D1009C3F91 /* ViewInspector */,
 			);
 			productName = MovieListingTests;
 			productReference = 72F8A0DA2DA556B0005B13A4 /* MovieListingTests.xctest */;
@@ -236,7 +255,8 @@
 			mainGroup = 72F8A0C12DA556B0005B13A4;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				7269A0C72E276C5B00C6F87C /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				723C6EED2E2DF5D1009C3F91 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+				72D31A332E2E161D00383AF8 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 72F8A0CB2DA556B0005B13A4 /* Products */;
@@ -274,27 +294,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		7269A0C82E27751E00C6F87C /* Run SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed. Visit https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		72F8A0C62DA556B0005B13A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -320,6 +319,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		72D31A352E2E164100383AF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 72D31A342E2E164100383AF8 /* SwiftLintBuildToolPlugin */;
+		};
 		72F8A0DC2DA556B0005B13A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 72F8A0C92DA556B0005B13A4 /* MovieListing */;
@@ -371,6 +374,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -461,6 +465,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MovieListing/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieListing/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -489,6 +494,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MovieListing/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieListing/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -517,6 +523,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D EXCLUDE_FROM_COVERAGE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ezhil.MovieListingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -618,15 +625,36 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7269A0C72E276C5B00C6F87C /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+		723C6EED2E2DF5D1009C3F91 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint";
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.2;
+			};
+		};
+		72D31A332E2E161D00383AF8 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.59.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		723C6EEE2E2DF5D1009C3F91 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 723C6EED2E2DF5D1009C3F91 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+		72D31A342E2E164100383AF8 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 72D31A332E2E161D00383AF8 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 72F8A0C22DA556B0005B13A4 /* Project object */;
 }

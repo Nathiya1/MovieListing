@@ -43,20 +43,18 @@ struct ProductionCompany: Codable {
     var name: String
 }
 
-struct Directors : Codable {
+struct Directors: Codable {
     var id: String
     var url: String
     var fullName: String
 }
 
-struct Cast : Codable, Identifiable {
+struct Cast: Codable, Identifiable {
     var id: String
     var url: String
     var fullName: String
-    var primaryImage : String?
+    var primaryImage: String?
     var thumbnails: [Thumbnail]?
     var job: String
     var characters: [String]
 }
-
-

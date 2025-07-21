@@ -7,7 +7,6 @@ struct ErrorView: View {
     var isJailBreak: Bool = false
 
     var body: some View {
-       
         if isJailBreak {
             Color.clear
             .alert(ConstantsStrings.jailbreakDetected.rawValue, isPresented: $showAlert) {
@@ -15,12 +14,11 @@ struct ErrorView: View {
             } message: {
                 Text(message)
             }
-        }
-        else {
+        } else {
             Color.clear
             .alert(ConstantsStrings.error.rawValue, isPresented: $showAlert) {
                 Button(ConstantsStrings.retryConnection.rawValue, action: retryAction)
-                Button("Cancel", role: .cancel) { }
+                Button(ConstantsStrings.cancel.rawValue, role: .cancel) { }
             } message: {
                 Text(message)
             }

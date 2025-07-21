@@ -6,7 +6,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.black.ignoresSafeArea() 
+                Color.black.ignoresSafeArea()
 
                 Group {
                     if viewModel.isLoading {
@@ -30,7 +30,6 @@ struct ContentView: View {
         }
     }
 }
-
 #Preview {
     ContentView()
 }

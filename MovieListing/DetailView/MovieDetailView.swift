@@ -3,7 +3,6 @@ import AVKit
 
 struct MovieDetailView: View {
     var id: String
-    
     @StateObject var viewModel = MovieDetailsViewModel(apiService: MovieApiService())
 
     var body: some View {
@@ -33,5 +32,3 @@ struct MovieDetailView: View {
 #Preview {
     MovieDetailView(id: "tt0111161")
 }
-
-

@@ -1,13 +1,14 @@
 import Foundation
+import SwiftUI
 
 enum ApiType {
     case listApi
     case detailsApi
 }
 
-enum ApiPath : String {
-    case listApi  = "https://imdb236.p.rapidapi.com/api/imdb/top250-movies" // "http://localhost:3000/api/movies"
-    case detailsApi =  "https://imdb236.p.rapidapi.com/api/imdb/"//"http://localhost:3000/api/movies/tt0068646"//
+enum ApiPath: String {
+    case listApi  =  "https://imdb236.p.rapidapi.com/api/imdb/top250-movies"
+    case detailsApi = "https://imdb236.p.rapidapi.com/api/imdb/"
 }
 
 enum APIError: Error {
@@ -16,15 +17,15 @@ enum APIError: Error {
 }
 
 let testMovieId = "tt0068646"
-let movieAPIKey = "e35b7bc239mshaa56e17894d8ae2p1cd5f1jsna5582bfd07a5"
+let movieAPIKey = "299ecf99ddmshb42f03fbccd59dep153381jsn0583d1ac35f4"
 
-enum LocalJsonFile : String {
+enum LocalJsonFile: String {
     case list = "Top250movies"
     case details = "MovieDetail"
 }
 
 enum JSONLoader {
-    static func load<T: Decodable>(_ filename: String,type: T.Type = T.self,bundle: Bundle = .main) -> T {
+    static func load<T: Decodable>(_ filename: String, type: T.Type = T.self, bundle: Bundle = .main) -> T {
         guard let url = bundle.url(forResource: filename, withExtension: "json") else {
             fatalError("Missing file: \(filename).json in bundle: \(bundle)")
         }
@@ -47,21 +48,16 @@ struct ApiRequest {
     ]
     let method = "GET"
     let queryParams: [String: String]?
-    
-    init(path: String,queryParams: [String: String]? = nil) {
+    init(path: String, queryParams: [String: String]? = nil) {
         self.path = path
         self.queryParams = queryParams
     }
-    
     func asURLRequest() -> URLRequest? {
-        guard var components = URLComponents(string:path) else { return nil }
-            
+        guard var components = URLComponents(string: path) else { return nil }
             if let queryParams = queryParams {
                 components.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
             }
-            
             guard let url = components.url else { return nil }
-            
             var request = URLRequest(url: url)
             request.httpMethod = method
             headers.forEach { request.setValue($0.value, forHTTPHeaderField: $0.key) }
@@ -69,7 +65,7 @@ struct ApiRequest {
         }
 }
 
-enum ConstantsStrings : String {
+enum ConstantsStrings: String {
     case noInternetConnection = "No internet connection"
     case retryConnection = "Retry"
     case error = "Error"
@@ -82,4 +78,5 @@ enum ConstantsStrings : String {
     case jailbreakDetected = "Jailbreak detected"
     case jailbreakError = "This device appears to be jailbroken.\nFor security reasons, this app cannot run"
     case exitApp = "Exit App"
+    case cancel = "Cancel"
 }

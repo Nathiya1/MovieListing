@@ -13,25 +13,21 @@ struct MovieListingApp: App {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.black
-        
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
     }
-    
     var body: some Scene {
         WindowGroup {
             if JailbreakDetector.isJailbroken() {
-                ErrorView(message:ConstantsStrings.jailbreakError.rawValue , retryAction: {
+                ErrorView(message: ConstantsStrings.jailbreakError.rawValue, retryAction: {
                     exit(0)
-                },isJailBreak: true)
+                }, isJailBreak: true)
             } else {
                 ContentView()
             }
-           
         }
     }
 }

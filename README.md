@@ -18,16 +18,16 @@ The project is organized into distinct layers, each responsible for specific con
 
 ## Model: 
 
- -**Movie.swift**: Contains the data model Struct Movie conforming to Codable protocol.
+ **Movie.swift**: Contains the data model Struct Movie conforming to Codable protocol.
 
 ## View:
 
- -**ContentView.swift**: List the top 250 movies.
- -**MovieDetailView.swift**: Display the movie poster, rating, summary, genres and cast.
+ **ContentView.swift**: List the top 250 movies.<br>
+ **MovieDetailView.swift**: Display the movie poster, rating, summary, genres and cast.
  
 ## ViewModel: 
 
- -**MovieViewModel.swift**: Contains the business logic to fetch the movie list.
+ -**MovieViewModel.swift**: Contains the business logic to fetch the movie list.<br>
  -**MovieDetailsViewModel.swift**: Contains the business logic to show the movie details.
  
 ## 🚀 Getting Started

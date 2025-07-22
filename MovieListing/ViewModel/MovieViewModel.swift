@@ -12,7 +12,6 @@ class MovieViewModel: ObservableObject {
     func fetchMovie() async {
         isLoading = true
          if NetworkMonitor.shared.isConnected {
-            errorMessage = nil
             do {
                 self.movies = try await apiService.fetchMovies()
                 isLoading = false

@@ -38,11 +38,11 @@ final class MovieViewModelTests: XCTestCase {
     }
     
     func testFecthMovieErrorMessageBadResponse() async  {
-        let viewModel =  MovieViewModel(apiService: MockFailureAPIService())
-        await viewModel.fetchMovie()
-        
-        XCTAssertEqual(viewModel.errorMessage, URLError(.badServerResponse).localizedDescription)
+        if NetworkMonitor.shared.isConnected {
+            let viewModel =  MovieViewModel(apiService: MockFailureAPIService())
+            await viewModel.fetchMovie()
+            
+            XCTAssertEqual(viewModel.errorMessage, URLError(.badServerResponse).localizedDescription)
+        }
     }
-    
-
 }

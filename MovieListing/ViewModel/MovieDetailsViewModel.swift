@@ -43,7 +43,6 @@ class MovieDetailsViewModel: ObservableObject {
     func fetchMovieDetail(imdbID: String) async {
         if NetworkMonitor.shared.isConnected {
             isLoading = true
-            errorMessage = nil
             do {
                 self.movieDetail = try await apiService.fetchMovieDetails(id: imdbID)
                 isLoading = false

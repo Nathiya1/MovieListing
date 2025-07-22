@@ -11,6 +11,8 @@ The MovieListing App is a simple iOS application built using SiftUI and follows 
 - Async Image loading
 - SwiftUI + MVVM + SPM
 - SwiftLint integration
+- ViewInspector (Unit test SwiftUI views)
+  
 
 ## Project Structure
 
